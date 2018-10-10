@@ -1,0 +1,11 @@
+Customers in Ukraine are required to print, sign and return to Microsoft the Microsoft Online Subscription Agreement (“Agreement”) promptly upon purchase of your subscription. If Microsoft has not received your signed, paper Agreement within three weeks after purchase, your subscription to the online service(s) will be terminated. Please send the Agreement to: Microsoft Ireland Operations Limited Atrium Building Block B Carmenhall Road Sandyford Industrial Estate Dublin 18, Ireland In addition, please read the entire Agreement below before accepting terms and conditions. Please click here to view and print the agreement.
+
+https://azure.microsoft.com/en-us/support/legal/subscription-agreement/?country=ua&language=en
+
+https://askubuntu.com/questions/1044449/install-neo4j-ubuntu-18-04
+
+https://github.com/neo4j-contrib/neo4j-graph-algorithms/releases
+
+https://neo4j.com/docs/graph-algorithms/3.4/introduction/
+
+SubscriptionAgreement12

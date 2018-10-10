@@ -1,13 +1,13 @@
 MATCH(n) DETACH DELETE n;
 
-LOAD CSV WITH HEADERS FROM "http://localhost/codes.csv" AS row
+LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/i1t2b3/train-stations-matrix/master/csv/codes.csv" AS row
 CREATE (n:Station)
 SET 
   n = row;
 
 CREATE INDEX ON :Station(stationID);
 
-LOAD CSV WITH HEADERS FROM "http://localhost/code_pairs2.csv" AS row
+LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/i1t2b3/train-stations-matrix/master/csv/code_pairs2.csv" AS row
 MATCH (f:Station), (to:Station)
 WHERE f.code = row.from AND to.code = row.to
 CREATE (f)-[details:LEADS]->(to)
@@ -18,8 +18,7 @@ SET details.time = toInteger(row.time),
 MATCH (a:Station {code: "AAP"})-[r:LEADS]->(b:Station {code: "SOO"}) RETURN a, r, b
 
 MATCH 
-  p = (a:Station {code: "ABW"})-[l:LEADS*]->(b:Station {code: "PLU"})
-
+  p = shortestPath(a:Station {code: "ABW"})-[l:LEADS*]->(b:Station {code: "PLU"})
 RETURN 
   reduce(time=0, r in relationships(p) |  time+r.time) AS totalTime
 ORDER BY totalTime ASC
@@ -28,7 +27,6 @@ LIMIT 1
 
 MATCH (start:Station {code: "AAP"}), (end:Station {code: "PLU"})
 CALL algo.kShortestPaths.stream(start, end, 2, 'time' ,{})
-
 YIELD index, nodeIds, path, costs
 RETURN [node in algo.getNodesById(nodeIds) | node.code] AS places,
        costs,

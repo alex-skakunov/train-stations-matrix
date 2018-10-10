@@ -23,3 +23,18 @@ if(empty($db))
 {
   exit("Cannot connect to database");
 }
+
+
+$shortopts  = "";
+$shortopts .= "h:";
+$shortopts .= "u:"; 
+$shortopts .= "p:";
+$shortopts .= "b:";
+
+$longopts  = array(
+    "host:",
+    "user:",
+    "password:",
+    "begins:",
+);
+$options = getopt($shortopts, $longopts);
