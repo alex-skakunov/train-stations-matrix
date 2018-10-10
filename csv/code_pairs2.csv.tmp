@@ -1,0 +1,5 @@
+from,to,time,train
+AAP,FPK,300,
+FPK,GPO,300,
+AAP,CLJ,100,
+CLJ,GPO,100,
