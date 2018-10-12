@@ -16,7 +16,7 @@ file_put_contents(FILENAME . '.raw', '');
 $sqlList = array();
 for ($from = 1; $from < 33; $from++) { 
     $to = $from+1;
-    $sql = 'SELECT CONCAT("INSERT INTO `code_pairs` VALUES (
+    $sql = 'SELECT CONCAT("INSERT INTO `code_pairs` (`from`, `to`, `shortest_time`, `train_changes`, `train`) VALUES (
                 \'", `StopC' . $from. '`,"\',
                 \'", `StopC' . $to. '`,"\',
                 \'", 
@@ -28,8 +28,7 @@ for ($from = 1; $from < 33; $from++) {
               ON DUPLICATE KEY UPDATE 
                 `shortest_time` = VALUES(`shortest_time`),
                 `train_changes` = 0,
-                `train` = IF(`shortest_time` = LEAST(`shortest_time`, VALUES(`shortest_time`)),
-                    `train`, VALUES(`train`))
+                `train` = VALUES(`train`)
               ;
               INSERT IGNORE INTO codes (code) VALUES (\'", `StopC' . $from. '`,"\');
               INSERT IGNORE INTO codes (code) VALUES (\'", `StopC' . $to. '`,"\');
@@ -49,5 +48,5 @@ for ($from = 1; $from < 33; $from++) {
 }
 
 foreach ($sqlList as $sql) {
-    query($sql);
+  query($sql);
 }

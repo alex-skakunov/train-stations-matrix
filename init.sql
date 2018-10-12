@@ -16,6 +16,7 @@ FROM codes c
 WHERE
     c.`code` LIKE 'z%';
 
+# overall progress
 SELECT
     (SELECT COUNT(*) AS cnt FROM code_pairs WHERE `total_time` IS NOT NULL) as Done,
     (SELECT COUNT(*) AS cnt FROM code_pairs) as Total,

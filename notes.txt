@@ -8,4 +8,29 @@ https://github.com/neo4j-contrib/neo4j-graph-algorithms/releases
 
 https://neo4j.com/docs/graph-algorithms/3.4/introduction/
 
+sudo su
+neo4-admin memrec
+mcedit /etc/neo4j/neo4j.conf
+[set memory]
+[set 0.0.0.0 address]
+dbms.security.procedures.unrestricted=algo.*
+cd /var/lib/neo4j/plugins/
+wget https://github.com/neo4j-contrib/neo4j-graph-algorithms/releases/download/3.4.7.0/graph-algorithms-algo-3.4.7.0.jar
+mkdir /var/run/neo4j
+sudo ps agvx | grep neo4j
+kill 7823
+
+
+/etc/security/limits.conf
+neo4j   soft    nofile  40000
+neo4j   hard    nofile  40000
+root   soft    nofile  40000
+root   hard    nofile  40000
+
+/etc/default/neo4j
+NEO4J_ULIMIT_NOFILE=60000
+
+neo4j start && tail -f /var/log/neo4j/neo4j.log
+
+
 SubscriptionAgreement12
